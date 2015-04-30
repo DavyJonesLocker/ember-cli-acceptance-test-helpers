@@ -3,7 +3,8 @@ import Ember from 'ember';
 export function findInputByLabel(app, label) {
   const { findWithAssert } = app.testHelpers;
 
-  return findWithAssert(`#${label.attr('for')}`);
+  // return findWithAssert(`#${label.attr('for')}`);
+  debugger
 }
 
-Ember.Test.registerHelper('findInputByLabel', findInputByLabel);
+Ember.Test.registerAsyncHelper('findInputByLabel', findInputByLabel);

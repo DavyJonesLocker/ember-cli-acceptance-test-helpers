@@ -8,11 +8,11 @@ export function fillInByLabel(app, assert, context, label, inputValue) {
     triggerEvent
   } = app.testHelpers;
 
-  const $label = find(`label:contains('${label}')`);
-  const input = findInputByLabel($label);
+  const $label = findBySelector(`label:contains('${label}')`, context);
+  const $input = findInputByLabel($label);
 
-  fillIn(input, inputValue);
-  triggerEvent(input, 'focusout');
+  fillIn($input, inputValue);
+  triggerEvent($input, 'focusout');
 }
 
 Ember.Test.registerAsyncHelper('fillInByLabel', fillInByLabel);

@@ -4,7 +4,6 @@ import Router from '../../router';
 import config from '../../config/environment';
 
 // finders
-import '../helpers/find-by-label';
 import '../helpers/find-by-selector';
 import '../helpers/find-input-by-label';
 
