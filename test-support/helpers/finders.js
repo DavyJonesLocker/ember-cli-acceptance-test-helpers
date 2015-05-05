@@ -1,6 +1,10 @@
 import Ember from 'ember';
 
-export function findBySelector(app, selector, context = null) {
+export function findByLabel(assert, label) {
+  return findWithAssert('label', label);
+}
+
+export function findBySelector(selector, context = null) {
   let results;
 
   if (Ember.isNone(context)) {
@@ -18,4 +22,6 @@ export function findBySelector(app, selector, context = null) {
   }
 }
 
-Ember.Test.registerAsyncHelper('findBySelector', findBySelector);
+export function findInputByLabel(label) {
+  return findWithAssert(`#${label.attr('for')}`);
+}

@@ -5,6 +5,12 @@ import {
 } from 'qunit';
 import startApp from '../helpers/start-app';
 
+import { fillInByLabel } from '../helpers/actions';
+import {
+  assertValueIs,
+  assertValueIsNot
+} from '../helpers/assertions';
+
 let app;
 let { run } = Ember;
 
@@ -20,8 +26,9 @@ module('Integration: Finders', {
 
 test('fillInByLabel enters text into an input corresponding to a label', function(assert) {
   function withinForm(text, callback) {
-    const form = findBySelector(`form:contains('${text}')`);
-    form.then(callback);
+    const form = find(`form:contains('${text}')`);
+
+    callback(form);
   }
 
   const targetInput = 'input#name';
@@ -34,7 +41,9 @@ test('fillInByLabel enters text into an input corresponding to a label', functio
     withinForm('John Doe', function(context) {
       assertValueIsNot(assert, context, targetInput, targetValue); // sanity check
       fillInByLabel(assert, context, 'Name', targetValue);
-      assertValue(assert, targetInput, targetValue);
+      andThen(function() {
+        assertValueIs(assert, context, targetInput, targetValue);
+      });
     });
   });
 });
