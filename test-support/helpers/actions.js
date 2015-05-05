@@ -1,10 +1,23 @@
 import Ember from 'ember';
-import { findInputByLabel } from '../helpers/finders';
+import {
+  findInputByLabel,
+  findLabelByText
+} from '../helpers/finders';
 
-export function fillInByLabel(assert, context, label, inputValue) {
-  const $label = findWithAssert(`label:contains('${label}')`);
-  const input = findInputByLabel($label);
+export function clickLink(linkText) {
+  return function() {
+    const linkSelector = `a:contains('${linkText}')`;
 
-  fillIn(input, inputValue);
-  triggerEvent(input, 'focusout');
+    click(linkSelector);
+  };
+}
+
+export function fillInByLabel(label, value) {
+  return function() {
+    const labelForInput = findLabelByText(label);
+    const input = findInputByLabel(labelForInput);
+
+    fillIn(input, value);
+    return find(input).focusout();
+  };
 }

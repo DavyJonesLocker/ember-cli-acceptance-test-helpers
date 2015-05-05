@@ -6,4 +6,6 @@ var Router = Ember.Router.extend({
 });
 
 export default Router.map(function() {
+  this.route('firstLink', { path: '/first-link-target' });
+  this.route('secondLink', { path: '/second-link-target' });
 });

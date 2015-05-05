@@ -5,16 +5,21 @@ import {
 } from 'qunit';
 import startApp from '../helpers/start-app';
 
-import { fillInByLabel } from '../helpers/actions';
 import {
-  assertValueIs,
-  assertValueIsNot
+  clickLink,
+  fillInByLabel
+} from '../helpers/actions';
+
+import {
+  assertCurrentUrl,
+  assertValueEquals,
+  assertValueNotEqual,
 } from '../helpers/assertions';
 
 let app;
 let { run } = Ember;
 
-module('Integration: Finders', {
+module('Acceptance: Actions', {
   beforeEach() {
     app = startApp();
   },
@@ -24,26 +29,22 @@ module('Integration: Finders', {
   }
 });
 
+test('clickLink finds a link by its text and clicks it', function(assert) {
+  assert.expect(1);
+
+  visit('/');
+  andThen(clickLink('First link'));
+  andThen(assertCurrentUrl(assert, '/first-link-target'));
+});
+
 test('fillInByLabel enters text into an input corresponding to a label', function(assert) {
-  function withinForm(text, callback) {
-    const form = find(`form:contains('${text}')`);
-
-    callback(form);
-  }
-
-  const targetInput = 'input#name';
+  const targetInput = 'form input.node-2';
   const targetValue = 'Jane Doe';
 
   assert.expect(2);
 
   visit('/');
-  andThen(function() {
-    withinForm('John Doe', function(context) {
-      assertValueIsNot(assert, context, targetInput, targetValue); // sanity check
-      fillInByLabel(assert, context, 'Name', targetValue);
-      andThen(function() {
-        assertValueIs(assert, context, targetInput, targetValue);
-      });
-    });
-  });
+  andThen(assertValueNotEqual(assert, targetInput, targetValue)); // sanity check
+  andThen(fillInByLabel('Name', targetValue));
+  andThen(assertValueEquals(assert, targetInput, targetValue));
 });
