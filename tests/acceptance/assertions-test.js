@@ -10,7 +10,7 @@ import {
 } from '../helpers/assertions';
 
 let app;
-let { run } = Ember;
+const { run } = Ember;
 
 module('Acceptance: Actions', {
   beforeEach() {

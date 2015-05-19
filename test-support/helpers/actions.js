@@ -4,11 +4,23 @@ import {
   findLabelByText
 } from '../helpers/finders';
 
+const { isEmpty } = Ember;
+
+export function clickButton(text) {
+  return function() {
+    let button = find(`button:contains('${text}')`);
+
+    if (isEmpty(button)) {
+      button = findWithAssert(`input[type="button"][value='${text}']`);
+    }
+
+    click(button);
+  };
+}
+
 export function clickLink(linkText) {
   return function() {
-    const linkSelector = `a:contains('${linkText}')`;
-
-    click(linkSelector);
+    click(`a:contains('${linkText}')`);
   };
 }
 

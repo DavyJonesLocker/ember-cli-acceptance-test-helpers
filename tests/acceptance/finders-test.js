@@ -15,7 +15,7 @@ import {
 } from '../helpers/assertions';
 
 let app;
-let { run } = Ember;
+const { run } = Ember;
 
 module('Integration: Finders', {
   beforeEach() {

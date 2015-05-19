@@ -22,9 +22,10 @@ export function assertInputHasClass(assert, label, klass) {
   };
 }
 
-export function assertValueEquals(assert, selector, expectedValue, context = null) {
+export function assertValueEquals(assert, label, expectedValue) {
   return function() {
-    const value = find(selector, context).val();
+    const labelForInput = findLabelByText(label);
+    const value = findInputByLabel(labelForInput).val();
 
     assert.equal(value, expectedValue);
   }

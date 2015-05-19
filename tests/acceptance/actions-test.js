@@ -6,6 +6,11 @@ import {
 import startApp from '../helpers/start-app';
 
 import {
+  assertHasMessage
+} from '../helpers/test-assertions';
+
+import {
+  clickButton,
   clickLink,
   fillInByLabel
 } from '../helpers/actions';
@@ -17,7 +22,7 @@ import {
 } from '../helpers/assertions';
 
 let app;
-let { run } = Ember;
+const { run } = Ember;
 
 module('Acceptance: Actions', {
   beforeEach() {
@@ -27,6 +32,16 @@ module('Acceptance: Actions', {
   afterEach() {
     run(app, 'destroy');
   }
+});
+
+test('clickButton finds a button by its text and clicks it', function(assert) {
+  assert.expect(2);
+
+  visit('/');
+  andThen(clickButton('First Target Button'));
+  andThen(assertHasMessage(assert, 'First target button clicked'));
+  andThen(clickButton('Second Target Button'));
+  andThen(assertHasMessage(assert, 'Second target button clicked'));
 });
 
 test('clickLink finds a link by its text and clicks it', function(assert) {
@@ -46,5 +61,5 @@ test('fillInByLabel enters text into an input corresponding to a label', functio
   visit('/');
   andThen(assertValueNotEqual(assert, targetInput, targetValue)); // sanity check
   andThen(fillInByLabel('Name', targetValue));
-  andThen(assertValueEquals(assert, targetInput, targetValue));
+  andThen(assertValueEquals(assert, 'Name', targetValue));
 });
