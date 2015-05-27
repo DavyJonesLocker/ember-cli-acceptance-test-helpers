@@ -18,7 +18,7 @@ import {
 import {
   assertCurrentUrl,
   assertValueEquals,
-  assertValueNotEqual,
+  assertValueNotEqual
 } from '../helpers/assertions';
 
 let app;
