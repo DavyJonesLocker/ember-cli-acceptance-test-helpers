@@ -17,7 +17,7 @@ import {
 
 import {
   assertCurrentUrl,
-  assertValueEquals,
+  assertValueEqual,
   assertValueNotEqual
 } from '../helpers/assertions';
 
@@ -53,13 +53,12 @@ test('clickLink finds a link by its text and clicks it', function(assert) {
 });
 
 test('fillInByLabel enters text into an input corresponding to a label', function(assert) {
-  const targetInput = 'form input.node-2';
   const targetValue = 'Jane Doe';
 
   assert.expect(2);
 
   visit('/');
-  andThen(assertValueNotEqual(assert, targetInput, targetValue)); // sanity check
+  andThen(assertValueNotEqual(assert, 'Name', targetValue)); // sanity check
   andThen(fillInByLabel('Name', targetValue));
-  andThen(assertValueEquals(assert, 'Name', targetValue));
+  andThen(assertValueEqual(assert, 'Name', targetValue));
 });
