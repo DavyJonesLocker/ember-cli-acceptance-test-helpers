@@ -22,19 +22,20 @@ export function assertInputHasClass(assert, label, klass) {
   };
 }
 
-export function assertValueEquals(assert, label, expectedValue) {
+export function assertValueEqual(assert, label, value) {
   return function() {
     const labelForInput = findLabelByText(label);
-    const value = findInputByLabel(labelForInput).val();
+    const actualValue = findInputByLabel(labelForInput).val();
 
-    assert.equal(value, expectedValue);
+    assert.equal(actualValue, value);
   }
 }
 
-export function assertValueNotEqual(assert, selector, expectedValue, context = null) {
+export function assertValueNotEqual(assert, label, value) {
   return function() {
-    const value = find(selector, context).val();
+    const labelForInput = findLabelByText(label);
+    const actualValue = findInputByLabel(labelForInput).val();
 
-    assert.notEqual(value, expectedValue);
+    assert.notEqual(actualValue, value);
   }
 }
