@@ -3,3 +3,9 @@ Status](https://travis-ci.org/dockyard/ember-cli-acceptance-test-helpers.svg?bra
 
 # ember-cli-acceptance-test-helpers
 A set of declarative test helpers for acceptance testing.
+
+## Legal ##
+
+[DockYard](http://dockyard.com/ember-consulting), LLC &copy; 2015
+
+[@dockyard](http://twitter.com/dockyard)
