@@ -1,7 +1,7 @@
-[![Build
-Status](https://travis-ci.org/dockyard/ember-cli-acceptance-test-helpers.svg?branch=master)](https://travis-ci.org/dockyard/ember-cli-acceptance-test-helpers)
-
 # ember-cli-acceptance-test-helpers
+
+**[ember-cli-acceptance-test-helpers is built and maintained by DockYard, contact us for expert Ember.js consulting](https://dockyard.com/ember-consulting)**.
+
 A set of declarative test helpers for acceptance testing.
 
 ## Legal ##
